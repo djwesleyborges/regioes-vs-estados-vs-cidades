@@ -24,3 +24,6 @@ python manage.py migrate
 python manage.py createsuperuser --email="admin@admin.org"
 Acesse: http://localhost:8000/api/v1/docs
 ```
+
+## TODO
+- Fixtures para carregar dados das regiões, estados e cidades.
