@@ -17,9 +17,8 @@ DEBUG=True
 DEV=True
 SECRET_KEY=%s
 ALLOWED_HOSTS=127.0.0.1,.localhost,0.0.0.0
-
 """.strip()
-    % (secret_key, password)
+        % (secret_key,)
 )
 
 # Writing our configuration file to '.env'
