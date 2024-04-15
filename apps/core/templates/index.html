@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>API Localidades</title>
+</head>
+<body class="bg-slate-50">
+<div class="container mx-auto px-4 py-4 bg-slate-300" x-data="getData()">
+    <label for="countries" class="block text-center mb-2 text-sm font-medium text-gray-900 dark:text-white mb-6">Região > Estado > Cidade</label>
+    <div class="grid grid-rows-3 grid-flow-col gap-4">
+        <div class="row-span-3 col-span-2">
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seleciona uma região</label>
+            <select x-model="regiaoSelecionada" x-on:change="getEstados()" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>Selecione uma região</option>
+                <template x-for="regiao in regioes">
+                    <option :value="regiao.id" x-text="regiao.nome"></option>
+                </template>
+            </select>
+        </div>
+        <div class="row-span-3 col-span-2">
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seleciona um estado</label>
+            <select x-model="estadoSelecionado" x-on:change="getCidades()" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>Selecione um estado</option>
+                <template x-for="estado in estados">
+                    <option :value="estado.id" x-text="estado.nome"></option>
+                </template>
+            </select>
+        </div>
+        <div class="row-span-3 col-span-2"><label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seleciona uma cidade</label>
+            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>Selecione uma cidade</option>
+                <template x-for="cidade in cidades">
+                    <option :value="cidade.id" x-text="cidade.nome"></option>
+                </template>
+            </select>
+        </div>
+    </div>
+    <label for="countries" class="block text-center mb-2 text-sm font-medium text-gray-900 dark:text-white mt-6 mb-6">Cidade > Estado > Região</label>
+    <div class="grid grid-rows-3 grid-flow-col gap-4">
+        <div class="row-span-3 col-span-2">
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seleciona uma cidade</label>
+            <select x-model="cidadeSelecionada" x-on:change="getEstadoPorCidade()" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>Selecione uma região</option>
+                <template x-for="cidade in cidades">
+                    <option :value="cidade.id" x-text="cidade.nome"></option>
+                </template>
+            </select>
+        </div>
+        <div class="row-span-3 col-span-2">
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seleciona um estado</label>
+            <select x-on:change="getCidades()" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option :value="estado.id" x-text="estado"></option>
+            </select>
+        </div>
+        <div class="row-span-3 col-span-2"><label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seleciona uma cidade</label>
+            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option :value="regiao.id" x-text="regiao"></option>
+            </select>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/consumer.js' %}"></script>
+</body>
+</html>
