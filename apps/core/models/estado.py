@@ -9,6 +9,9 @@ class Estado(models.Model):
         related_name='estados',
     )
 
+    class Meta:
+        ordering = ('nome',)
+
     def __str__(self):
         return self.nome
 

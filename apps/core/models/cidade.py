@@ -9,5 +9,8 @@ class Cidade(models.Model):
         related_name='cidades',
     )
 
+    class Meta:
+        ordering = ('nome',)
+
     def __str__(self):
         return self.nome
