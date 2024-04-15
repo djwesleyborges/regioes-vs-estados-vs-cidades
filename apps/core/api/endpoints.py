@@ -18,6 +18,18 @@ def get_estados(request, regiao_id: int):
     return qs
 
 
+@router.get('/regiao/{regiao_id}/cidades/', response=list[CidadeSchema])
+def get_cidade_por_regiao(request, regiao_id: int):
+    qs = Regiao.objects.get(id=regiao_id).get_cidades()
+    return qs
+
+
+@router.get('/estados/', response=list[EstadoSchema])
+def get_todos_estados(request):
+    qs = Estado.objects.all()
+    return qs
+
+
 @router.get('/estado/{estado_id}/cidade/', response=list[CidadeSchema])
 def get_cidade_by_estado(request, estado_id: int):
     qs = Cidade.objects.filter(estado_id=estado_id)
