@@ -12,6 +12,7 @@ const getData = () => ({
 
     init() {
         this.getRegioes();
+        this.getTodosEstados();
         this.getTodasCidades();
     },
     getRegioes() {
@@ -26,6 +27,15 @@ const getData = () => ({
     getEstados() {
         const regiao_id = this.regiaoSelecionada;
         axios.get(`/api/v1/regiao/${regiao_id}/estados/`)
+            .then(response => {
+                this.estados = response.data
+            })
+            .catch(error => {
+                alert(`Error: ${error}`)
+            })
+    },
+    getTodosEstados() {
+        axios.get(`/api/v1/estados/`)
             .then(response => {
                 this.estados = response.data
             })
