@@ -2,14 +2,15 @@ const getData = () => ({
   regioes: [],
   estados: [],
   cidades: [],
-  regiao: '',
-  estado: '',
-  cidade: '',
 
   init() {
-    this.getRegioes();
-    this.getTodosEstados();
-    this.getTodasCidades();
+    this.getReset()
+  },
+
+  getReset() {
+    this.getRegioes()
+    this.getTodosEstados()
+    this.getTodasCidades()
   },
 
   getRegioes() {
@@ -52,9 +53,12 @@ const getData = () => ({
   },
 
   getCidades(estado_id) {
+    // Filtra Cidades
     axios.get(`/api/v1/estado/${estado_id}/cidade/`)
       .then(response => {
         this.cidades = response.data
+        // Filtra Região
+        this.getRegiaoPorEstado(response.data[0].estado)
       })
       .catch(error => {
         alert(`Error: ${error}`)
@@ -68,13 +72,10 @@ const getData = () => ({
       })
   },
 
-  getEstadoPorCidade() {
-    const cidade_id = this.cidadeSelecionada;
+  getEstadoPorCidade(cidade_id) {
     axios.get(`/api/v1/cidade/${cidade_id}/estado/`)
       .then(response => {
-        console.log(response.data[0].nome)
-        this.estado = response.data[0].nome
-        //this.estados = response.data;
+        this.estados = response.data
         this.getRegiaoPorEstado(response.data[0].id)
       })
       .catch(error => {
@@ -85,7 +86,7 @@ const getData = () => ({
   getRegiaoPorEstado(estado_id) {
     axios.get(`/api/v1/estado/${estado_id}/regiao/`)
       .then(response => {
-        this.regiao = response.data[0].nome
+        this.regioes = response.data
       })
       .catch(error => {
         alert(`Error: ${error}`)

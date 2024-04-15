@@ -30,6 +30,7 @@
     <div class="grid">
       <!-- Região -->
       <div>
+        <button @click="getReset()">Limpar</button>
         <table>
           <thead>
             <tr>
@@ -89,7 +90,10 @@
           <tbody>
             <template x-for="cidade in cidades">
               <tr>
-                <td x-text="cidade.nome"></td>
+                <td
+                  x-text="cidade.nome"
+                  @click="getEstadoPorCidade(cidade.id)"
+                ></td>
               </tr>
               <option
                 :value="cidade.id"
