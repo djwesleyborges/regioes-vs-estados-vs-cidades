@@ -1,8 +1,12 @@
 from django.db import models
+from .cidade import Cidade
 
 
 class Regiao(models.Model):
     nome = models.CharField(max_length=100)
+
+    class Meta:
+        ordering = ('pk',)
 
     def __str__(self):
         return self.nome
@@ -11,4 +15,4 @@ class Regiao(models.Model):
         return self.estados.all()
 
     def get_cidades(self):
-        return [cidade.cidades.all() for cidade in self.estados.all()]
+        return Cidade.objects.filter(estado__regiao=self)
