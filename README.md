@@ -1,15 +1,19 @@
 # API regional
 
-Se clicar em Região filtra os Estados e Cidades.
-Se clicar em Estado filtra a Região e as Cidades.
-Se clicar em Cidade filtra o Estado e a Região.
+Esta app faz filtros simultâneos.
+
+* Se clicar em Região filtra os Estados e Cidades.
+* Se clicar em Estado filtra a Região e as Cidades.
+* Se clicar em Cidade filtra o Estado e a Região.
+
+![](img/image.png)
 
 
 ## Este projeto foi feito com:
 
 * [Python 3.11](https://www.python.org/)
-* [Django 5.0](https://www.djangoproject.com/)
-* [Django-Ninja](https://django-ninja.rest-framework.com/)
+* [Django 5.0.4](https://www.djangoproject.com/)
+* [Django-Ninja 1.1.0](https://django-ninja.rest-framework.com/)
 * [PicoCSS](https://picocss.com/)
 * [AlpineJS](https://alpinejs.dev/)
 

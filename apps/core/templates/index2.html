@@ -14,6 +14,10 @@
         td {
             cursor: pointer;
         }
+        #cidade {
+          height: 41rem;
+          overflow: auto;
+        }
     </style>
 </head>
 
@@ -22,19 +26,19 @@
     class="container mx-auto px-4 py-4 bg-slate-300"
     x-data="getData"
   >
-    <label
-      for="countries"
-      class="block text-center mb-2 text-sm font-medium text-gray-900 dark:text-white mb-6"
-    >Região > Estado > Cidade</label>
+    <h1>Região > Estado > Cidade</h1>
+
+    <p>Clique em cada uma das tabelas para aplicar o filtro.</p>
+
+    <button @click="getReset()">Limpar</button>
 
     <div class="grid">
       <!-- Região -->
       <div>
-        <button @click="getReset()">Limpar</button>
         <table>
           <thead>
             <tr>
-              <th>Região</th>
+              <th x-text="'Região '+regioes.length"></th>
             </tr>
           </thead>
           <tbody>
@@ -59,7 +63,7 @@
         <table>
           <thead>
             <tr>
-              <th>Estado</th>
+              <th x-text="'Estado '+estados.length"></th>
             </tr>
           </thead>
           <tbody>
@@ -80,11 +84,11 @@
       </div>
 
       <!-- Cidade -->
-      <div>
+      <div id="cidade">
         <table>
           <thead>
             <tr>
-              <th>Cidade</th>
+              <th x-text="'Cidade '+cidades.length"></th>
             </tr>
           </thead>
           <tbody>
